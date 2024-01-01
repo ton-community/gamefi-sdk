@@ -13,11 +13,13 @@ async function main() {
 
     console.log('Using wallet', sdk.sender?.address);
 
-    const jetton = sdk.openJetton(Address.parse('my-jetton-address'));
-
-    await jetton.sendMint({
-        to: Address.parse('any-address'),
-        amount: 1200000n,
+    const nftCollection = sdk.openNftCollection(Address.parse('my-nft-collection-address'));
+    nftCollection.sendMint({
+        itemIndex: 2n,
+        itemParams: {
+            individualContent: 'test-content',
+            owner: Address.parse('any-address'),
+        },
     })
 }
 
